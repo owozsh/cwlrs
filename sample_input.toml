@@ -1,0 +1,33 @@
+name = "Theme Name"
+
+[base]
+base03 = "#000000"
+base02 = "#000000"
+base01 = "#000000"
+base00 = "#000000"
+base0 = "#000000"
+base1 = "#000000"
+base2 = "#000000"
+base3 = "#000000"
+
+[colors]
+yellow = "#000000"
+orange = "#000000"
+red = "#000000"
+magenta = "#000000"
+violet = "#000000"
+blue = "#000000"
+cyan = "#000000"
+green = "#000000"
+
+[syntax]
+function = "green"
+type = "cyan"
+keyword = "violet"
+value = "magenta"
+string = "green"
+parameter = "orange"
+property = "blue"
+
+[ui]
+accent = "red"
