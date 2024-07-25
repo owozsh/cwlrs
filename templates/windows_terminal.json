@@ -1,0 +1,32 @@
+{
+  "name": "$THEME_NAME",
+
+  "white": "$WHITE",
+  "brightWhite": "$WHITE",
+
+  "red": "$RED",
+  "brightRed": "$RED",
+
+  "green": "$GREEN",
+  "brightGreen": "$GREEN",
+
+  "brightYellow": "$YELLOW",
+  "yellow": "$YELLOW",
+
+  "purple": "$MAGENTA",
+  "brightPurple": "$MAGENTA",
+
+  "blue": "$BLUE",
+  "brightBlue": "$BLUE",
+
+  "cyan": "$CYAN",
+  "brightCyan": "$CYAN",
+
+  "black": "$BLACK",
+  "brightBlack": "$BLACK",
+
+  "foreground": "$FG",
+  "cursorColor": "$ACCENT",
+  "selectionBackground": "$ACCENT",
+  "background": "$BG_BASE"
+}
