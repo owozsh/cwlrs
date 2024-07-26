@@ -6,33 +6,43 @@ fn read_template(template_file_name: &str) -> String {
     fs::read_to_string(&template_path).expect("Error reading the template file.")
 }
 
-fn generate_from_template(config: Table) -> String {
-    let template = read_template("vscode.json");
+fn get_template_path(template_type: &str) -> Result<&str, &str> {
+    match template_type {
+        "vscode" => Ok("vscode.json"),
+        _ => Err("Not a valid template."),
+    }
+}
 
-    let mut result = String::from(&template);
-
+fn create_color_map(config: &Table) -> HashMap<&str, &str> {
     let color_scopes = ["base", "colors", "syntax", "ui"];
-    let mut colors = HashMap::new();
+    let mut colors: HashMap<&str, &str> = HashMap::new();
 
     for scope in color_scopes {
         let err = format!("Missing {scope} key");
         let scope_items = config[scope].as_table().expect(&err).iter();
 
         for (key, value) in scope_items {
-            colors.insert(key, value);
-            let from = format!("${key}");
-            let to = String::from(value.as_str().unwrap());
-
-            dbg!(&to);
-
-            result = match &to[..1] {
-                "#" => result.replace(&from, &to),
-                _ => {
-                    let color = colors.get(&to).unwrap().as_str().unwrap();
-                    result.replace(&from, &color)
-                }
-            };
+            colors.insert(key, value.as_str().unwrap());
         }
+    }
+
+    colors
+}
+
+fn generate_from_template(template_type: &str, config: &Table) -> String {
+    let template = read_template(get_template_path(template_type).unwrap());
+
+    let mut result = String::from(&template);
+
+    let color_map = create_color_map(config);
+
+    for (key, value) in color_map.iter() {
+        let key = &format!("${key}");
+
+        result = match &value[..1] {
+            "#" => result.replace(key, value),
+            _ => result.replace(key, color_map.get(value).unwrap()),
+        };
     }
 
     result
@@ -57,5 +67,5 @@ fn main() {
 
     let output_dir_path = &args[2];
 
-    write_output(&output_dir_path, &generate_from_template(config));
+    write_output(&output_dir_path, &generate_from_template("vscode", &config));
 }
