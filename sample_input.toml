@@ -1,14 +1,15 @@
 name = "theme_name"
 
 [base]
-base03 = "#1a1b16"
-base02 = "#22231c"
-base01 = "#22231c"
-base00 = "#22231c"
-base0 = "#c5c7bf"
-base1 = "#c5c7bf"
-base2 = "#c5c7bf"
-base3 = "#c5c7bf"
+base_darkest = "#262626"
+base_darker = "#262626"
+base_dark = "#262626"
+base = "#262626"
+base_light = "#efefef"
+base_lighter = "#efefef"
+base_lightest = "#efefef"
+
+fg = "#c5c7bf"
 
 [colors]
 yellow = "#ada99d"
